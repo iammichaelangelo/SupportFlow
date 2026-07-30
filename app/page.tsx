@@ -2,7 +2,7 @@ import Link from "next/link";
 import { AppShell } from "@/components/AppShell";
 import { Badge } from "@/components/Badge";
 import { DashboardChart } from "@/components/DashboardChart";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import type { Ticket } from "@/lib/types";
 import {
   ArrowRight,
@@ -17,6 +17,7 @@ import {
 export const dynamic = "force-dynamic";
 
 export default async function Dashboard() {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("support_tickets")
     .select("*")

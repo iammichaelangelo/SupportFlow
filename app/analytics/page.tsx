@@ -1,13 +1,14 @@
 import { AppShell } from "@/components/AppShell";
 import { DashboardChart } from "@/components/DashboardChart";
 import { Badge } from "@/components/Badge";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import type { Ticket } from "@/lib/types";
 import { CheckCircle2, Clock3, Inbox, Sparkles } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export default async function Analytics() {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("support_tickets")
     .select("*")

@@ -1,11 +1,12 @@
 import { AppShell } from "@/components/AppShell";
 import { TicketExplorer } from "@/components/TicketExplorer";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import type { Ticket } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
 
 export default async function TicketsPage() {
+  const supabase = await createClient();
   const { data, error } = await supabase
     .from("support_tickets")
     .select("*")

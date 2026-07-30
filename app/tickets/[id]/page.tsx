@@ -15,7 +15,7 @@ import {
 
 import { AppShell } from "@/components/AppShell";
 import { Badge } from "@/components/Badge";
-import { supabase } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase/server";
 import type { Ticket, TicketMessage } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -29,6 +29,7 @@ type TicketDetailsProps = {
 export default async function TicketDetails({
   params,
 }: TicketDetailsProps) {
+  const supabase = await createClient();
   const { id } = await params;
 
   const { data: ticketData, error: ticketError } = await supabase
