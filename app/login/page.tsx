@@ -104,14 +104,25 @@ export default function Login() {
             />
           </div>
 
-          {error ? <div className="login-error" role="alert">{error}</div> : null}
+        {error ? (
+          <div className="login-error" role="alert">
+            {error}
+          </div>
+        ) : null}
 
-          <button className="button primary login-button" disabled={loading}>
+        <div className="login-actions">
+          <button
+            className="button primary login-button"
+            disabled={loading}
+          >
             {loading ? "Signing in..." : "Sign in"}
             <ArrowRight size={17} />
           </button>
 
-          <small>Only accounts created in Supabase Authentication can sign in.</small>
+          <small className="login-note">
+            Authorized administrators only.
+          </small>
+        </div>
         </form>
       </section>
     </main>
