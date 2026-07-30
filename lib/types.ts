@@ -1,0 +1,43 @@
+export type Ticket = {
+  id: string;
+  ticket_id: string;
+  message_id?: string | null;
+  thread_id?: string | null;
+  customer_name: string;
+  customer_email: string;
+  subject: string;
+  email_body?: string | null;
+  intent?: string | null;
+  category: string;
+  priority: string;
+  sentiment: string;
+  ai_summary: string;
+  customer_request?: string | null;
+  recommended_action: string;
+  human_review?: boolean | null;
+  draft_reply: string;
+  status: string;
+  assigned_to: string;
+  follow_up_date?: string | null;
+  resolution?: string | null;
+  reply_count: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type TicketMessage = {
+  id: string;
+  ticket_id: string;
+  gmail_message_id?: string | null;
+  gmail_thread_id?: string | null;
+  direction: "incoming" | "outgoing";
+  sender_type: "customer" | "support" | "ai";
+  sender_name: string | null;
+  sender_email?: string | null;
+  recipient_email?: string | null;
+  subject?: string | null;
+  message_body: string;
+  message_status: "received" | "draft" | "sent" | "failed";
+  is_ai_generated: boolean;
+  created_at: string;
+};
